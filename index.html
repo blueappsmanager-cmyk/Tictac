@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - Tic Tac Toe - Fun Master</title>
+  <meta name="description" content="Official Privacy Policy for Tic Tac Toe - Fun Master (com.blueapps.funmastertic) developed by BlueAppsBox." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-light: #38bdf8;
+      --secondary: #fb7185;
+      --amber: #fbbf24;
+      --emerald: #10b981;
+      --bg-dark: #030712;
+      --bg-card: rgba(15, 23, 42, 0.92);
+      --border-card: rgba(56, 189, 248, 0.25);
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --text-sub: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Nunito', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: radial-gradient(circle at 50% 12%, #0f172a 0%, #060914 45%, #030712 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.75;
+      padding: 32px 16px 64px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Reading Progress Bar */
+    #progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      width: 0%;
+      background: linear-gradient(90deg, #38bdf8, #818cf8, #fb7185);
+      z-index: 999;
+      transition: width 0.1s ease-out;
+    }
+
+    /* Ambient Glows */
+    .bg-glow-1 {
+      position: fixed;
+      top: -10%;
+      left: -10%;
+      width: 50vw;
+      height: 50vh;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.14) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-glow-2 {
+      position: fixed;
+      bottom: -10%;
+      right: -10%;
+      width: 50vw;
+      height: 50vh;
+      background: radial-gradient(circle, rgba(251, 113, 133, 0.12) 0%, transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 860px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 26px;
+      padding: 42px 34px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.75), 0 0 35px rgba(56, 189, 248, 0.08);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 24px 18px;
+        border-radius: 20px;
+      }
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(56, 189, 248, 0.18);
+      margin-bottom: 30px;
+    }
+
+    .brand-icon-box {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 76px;
+      height: 76px;
+      background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+      border-radius: 22px;
+      box-shadow: 0 10px 25px rgba(2, 132, 199, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.3);
+      margin-bottom: 16px;
+      font-size: 36px;
+    }
+
+    h1 {
+      font-size: 29px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #ffffff 40%, #e2e8f0 70%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--primary-light);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .meta-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12.5px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+    }
+
+    .meta-chip strong {
+      color: #ffffff;
+    }
+
+    /* Search Bar */
+    .search-wrapper {
+      margin-bottom: 26px;
+      position: relative;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 18px 12px 44px;
+      border-radius: 14px;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: rgba(3, 7, 18, 0.8);
+      color: #ffffff;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary-light);
+      box-shadow: 0 0 16px rgba(56, 189, 248, 0.3);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 16px;
+      opacity: 0.6;
+    }
+
+    /* Sections */
+    .section-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(56, 189, 248, 0.12);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s ease;
+    }
+
+    .section-card:hover {
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2 .sec-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(56, 189, 248, 0.18);
+      color: var(--primary-light);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    p {
+      color: var(--text-muted);
+      font-size: 14.5px;
+      margin-bottom: 12px;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    ul {
+      list-style: none;
+      margin: 12px 0;
+    }
+
+    li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+      font-size: 14.5px;
+    }
+
+    li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--primary-light);
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .callout-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 3px solid var(--primary-light);
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      margin: 14px 0;
+      font-size: 14px;
+      color: #e0f2fe;
+    }
+
+    .contact-container {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.15), rgba(79, 70, 229, 0.1));
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 20px;
+      padding: 26px 20px;
+      text-align: center;
+      margin-top: 28px;
+    }
+
+    .email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 10px 22px;
+      border-radius: 30px;
+      margin-top: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .email-btn:hover {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.25);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 34px;
+      color: var(--text-sub);
+      font-size: 12.5px;
+    }
+
+    .footer a {
+      color: var(--primary-light);
+      text-decoration: none;
+    }
+
+    .toast-pill {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--emerald);
+      color: #ffffff;
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .toast-pill.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div id="progress-bar"></div>
+
+  <!-- Ambient Light FX -->
+  <div class="bg-glow-1"></div>
+  <div class="bg-glow-2"></div>
+
+  <div class="container">
+    
+    <!-- Header -->
+    <header class="header">
+      <div class="brand-icon-box">❌⭕</div>
+      <h1>Privacy Policy</h1>
+      <div class="subtitle">Tic Tac Toe - Fun Master</div>
+      
+      <div class="meta-tags">
+        <span class="meta-chip">📦 Package: <strong>com.blueapps.funmastertic</strong></span>
+        <span class="meta-chip">🏢 Developer: <strong>BlueAppsBox</strong></span>
+        <span class="meta-chip">📅 Effective: <strong>October 24, 2026</strong></span>
+      </div>
+    </header>
+
+    <!-- Search Input -->
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="policy-search" class="search-input" placeholder="Search privacy topics (e.g. AdMob, Children, Data Deletion, Virtual Coins)..." />
+    </div>
+
+    <main id="policy-content">
+
+      <!-- Section 1 -->
+      <section class="section-card">
+        <h2><span class="sec-badge">1</span> Introduction & Overview</h2>
+        <p>
+          Welcome to <strong>Tic Tac Toe - Fun Master</strong> (hereinafter referred to as the "Game" or "Application"), developed and published by <strong>BlueAppsBox</strong> (also operating under the brand tag <strong>blueappbox</strong>, "we", "us", or "our").
+        </p>
+        <p>
+          We are committed to maintaining the trust and confidence of all players who download and play our mobile applications. This Privacy Policy informs you about how data is handled when you install, play, and interact with <strong>Tic Tac Toe - Fun Master</strong> (Application ID / Package Name: <code>com.blueapps.funmastertic</code>). By using the Game, you consent to the data handling practices outlined in this policy.
+        </p>
+      </section>
+
+      <!-- Section 2 -->
+      <section class="section-card">
+        <h2><span class="sec-badge">2</span> Information We Collect & How It Is Used</h2>
+        <p>
+          <strong>Tic Tac Toe - Fun Master</strong> is built as a privacy-friendly casual game that requires <strong>no user registration, account sign-in, email addresses, phone numbers, or passwords</strong> to play.
+        </p>
+        <p>The categories of data processed include:</p>
+        <ul>
+          <li><strong>Local Device Storage (On-Device Only):</strong> Your chosen in-game player name, selected avatar icon, virtual coin balances, unlocked marks (X and O), audio sound settings, and match statistics are stored locally on your device via HTML5 LocalStorage. We never upload or synchronize this private game state to our own external servers.</li>
+          <li><strong>Device & Diagnostics Data:</strong> Non-personally identifiable technical details such as your device model, Android operating system version, screen resolution, locale language, and network connection status collected through standard Android OS runtime calls.</li>
+          <li><strong>Crash & Performance Logs:</strong> Anonymized diagnostic crash reports to identify and rectify runtime bugs, ensuring smooth and responsive 60 FPS gameplay.</li>
+        </ul>
+      </section>
+
+      <!-- Section 3 -->
+      <section class="section-card">
+        <h2><span class="sec-badge">3</span> Advertising Partners & Google AdMob Disclosures</h2>
+        <p>
+          To maintain <strong>Tic Tac Toe - Fun Master</strong> as a 100% free-to-play game for players worldwide, we integrate third-party advertising SDKs from <strong>Google AdMob</strong>.
+        </p>
+        <p>Google AdMob may collect and process information in accordance with Google's Privacy Policy:</p>
+        <ul>
+          <li><strong>Google Advertising ID (AAID):</strong> Used by AdMob for ad frequency capping, fraud prevention, ad measurement, and personalized/non-personalized ad delivery based on your device consent settings.</li>
+          <li><strong>Approximate Geolocation:</strong> Derived from IP address at country/city level to serve region-relevant ads.</li>
+          <li><strong>Ad Interaction Metrics:</strong> Information on ad views and completion of voluntary rewarded video ads (used for earning +500 free bonus coins, unlocking custom avatars, or picking X/O marks).</li>
+        </ul>
+        <div class="callout-box">
+          <strong>Rewarded Ads Transparency:</strong> Watching rewarded video ads in the game is always voluntary and initiated by the player. You are never forced to watch rewarded ads to play standard matches or local Pass & Play games.
+        </div>
+        <p>
+          Review Google’s comprehensive privacy practices: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener" style="color: var(--primary-light); text-decoration: underline;">https://policies.google.com/technologies/ads</a>
+        </p>
+      </section>
+
+      <!-- Section 4 -->
+      <section class="section-card">
+        <h2><span class="sec-badge">4</span> Children’s Privacy (COPPA Compliance)</h2>
+        <p>
+          <strong>BlueAppsBox</strong> places the highest priority on children's digital safety. <strong>Tic Tac Toe - Fun Master</strong> is designed as a family-friendly classic strategy game suitable for all ages.
+        </p>
+        <ul>
+          <li>The Game does <strong>not knowingly collect or solicit personal identifiable information (PII)</strong> from children under the age of 13 (or the applicable age limit in your jurisdiction).</li>
+          <li>We configure our third-party ad requests to adhere to Google Play’s Families Policy and COPPA regulations.</li>
+          <li>If a parent or legal guardian discovers that their child has provided personal information to ad networks through our game without parental consent, please contact us immediately at <strong>blueappsmanager@gmail.com</strong>, and we will promptly investigate and purge relevant logs.</li>
+        </ul>
+      </section>
+
+      <!-- Section 5 -->
+      <section class="section-card">
+        <h2><span class="sec-badge">5</span> User Rights, Data Control & Erasure (GDPR & CCPA)</h2>
+        <p>
+          Depending on your geographical region (such as the European Economic Area under GDPR or California under CCPA/CPRA), you retain fundamental rights regarding your digital privacy:
+        </p>
+        <ul>
+          <li><strong>Right to Erase All Game Data:</strong> You can wipe all local progress, avatars, scores, and coins in one tap at any time: <em>Android Settings &rarr; Apps &rarr; Tic Tac Toe - Fun Master &rarr; Storage &rarr; Clear Data</em>.</li>
+          <li><strong>Right to Opt-Out of Personalized Ads:</strong> You can reset or delete your Google Advertising ID directly from your Android settings: <em>Settings &rarr; Google &rarr; Ads &rarr; Delete Advertising ID</em>.</li>
+          <li><strong>Right to Inquire:</strong> If you have questions regarding data security or privacy practices, reach us directly via email at <strong>blueappsmanager@gmail.com</strong>.</li>
+        </ul>
+      </section>
+
+      <!-- Section 6 -->
+      <section class="section-card">
+        <h2><span class="sec-badge">6</span> Virtual Currency & In-Game Items Disclaimer</h2>
+        <p>
+          Coins, trophies, and avatars featured in <strong>Tic Tac Toe - Fun Master</strong> represent virtual gameplay counters designed purely for in-game staking and entertainment.
+        </p>
+        <div class="callout-box">
+          <strong>Important Notice:</strong> In-game coins hold <strong>zero monetary cash value</strong>. Coins cannot be deposited, withdrawn, converted to real cash, or traded for real-world currency under any circumstances.
+        </div>
+      </section>
+
+      <!-- Section 7 -->
+      <section class="section-card">
+        <h2><span class="sec-badge">7</span> Policy Revisions</h2>
+        <p>
+          We reserve the right to revise this Privacy Policy periodically to align with Google Play Console Developer Program Policies, new features, or statutory legal standards. The updated document will be published at this location with a revised "Effective Date" at the top.
+        </p>
+      </section>
+
+      <!-- Contact Container -->
+      <div class="contact-container">
+        <h2>📬 Contact Developer (BlueAppsBox)</h2>
+        <p style="color: #e2e8f0; font-size: 14.5px;">
+          For privacy inquiries, feedback, or support regarding <strong>Tic Tac Toe - Fun Master</strong>, contact our team:
+        </p>
+        
+        <div class="email-btn" id="copy-email-btn" title="Click to copy email address">
+          <span>✉️</span>
+          <span>blueappsmanager@gmail.com</span>
+          <span style="font-size: 11px; opacity: 0.75; padding-left: 4px;">(Click to Copy)</span>
+        </div>
+
+        <p style="margin-top: 14px; font-size: 13px; color: var(--text-sub);">
+          Company: <strong>BlueAppsBox</strong> &bull; Package: <strong>com.blueapps.funmastertic</strong>
+        </p>
+      </div>
+
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2026 <strong>BlueAppsBox</strong>. All rights reserved.</p>
+      <p style="margin-top: 4px;">Tic Tac Toe - Fun Master &bull; Quality Mobile Entertainment.</p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast-pill">Email copied to clipboard! ✨</div>
+
+  <script>
+    // 1. Reading Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progress-bar').style.width = scrolled + '%';
+    });
+
+    // 2. Interactive Search Filter
+    const searchInput = document.getElementById('policy-search');
+    const sections = document.querySelectorAll('.section-card');
+
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase().trim();
+      sections.forEach(sec => {
+        const text = sec.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          sec.style.display = 'block';
+        } else {
+          sec.style.display = 'none';
+        }
+      });
+    });
+
+    // 3. Copy Email with Toast Feedback
+    const copyBtn = document.getElementById('copy-email-btn');
+    const toast = document.getElementById('toast');
+
+    copyBtn.addEventListener('click', () => {
+      const email = 'blueappsmanager@gmail.com';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(showToast);
+      } else {
+        const temp = document.createElement('textarea');
+        temp.value = email;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showToast();
+      }
+    });
+
+    function showToast() {
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
